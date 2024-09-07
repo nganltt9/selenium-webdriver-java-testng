@@ -47,9 +47,9 @@ public class Topic_02_XPath_Css {
         driver.findElement(By.id("txtFirstname")).sendKeys("ngan le");
         driver.findElement(By.id("txtEmail")).sendKeys("@ngan111");
         driver.findElement(By.id("txtCEmail")).sendKeys("@ngan111");
-        driver.findElement(By.id("txtPassword")).sendKeys("123456");
-        driver.findElement(By.id("txtCPassword")).sendKeys("123456");
-        driver.findElement(By.id("txtPhone")).sendKeys("0356956132");
+//        driver.findElement(By.id("txtPassword")).sendKeys("123456");
+//        driver.findElement(By.id("txtCPassword")).sendKeys("123456");
+//        driver.findElement(By.id("txtPhone")).sendKeys("0356956132");
 
         //...
         driver.findElement(By.xpath("//button[@type='submit']")).click();
@@ -68,9 +68,9 @@ public class Topic_02_XPath_Css {
         driver.findElement(By.id("txtFirstname")).sendKeys("ngan le");
         driver.findElement(By.id("txtEmail")).sendKeys("ngan99@gmail.com");
         driver.findElement(By.id("txtCEmail")).sendKeys("ngan99@gmail.co");
-        driver.findElement(By.id("txtPassword")).sendKeys("123456");
-        driver.findElement(By.id("txtCPassword")).sendKeys("123456");
-        driver.findElement(By.id("txtPhone")).sendKeys("0356956132");
+//        driver.findElement(By.id("txtPassword")).sendKeys("123456");
+//        driver.findElement(By.id("txtCPassword")).sendKeys("123456");
+//        driver.findElement(By.id("txtPhone")).sendKeys("0356956132");
 
         //...
         driver.findElement(By.xpath("//button[@type='submit']")).click();
@@ -81,7 +81,7 @@ public class Topic_02_XPath_Css {
     }
 
     @Test
-    public void Register_04_Password_Less_Than_6_Characters(){
+    public void Register_04_Invalid_Password(){
         driver.get("https://alada.vn/tai-khoan/dang-ky.html");
         //Action
         driver.findElement(By.id("txtFirstname")).sendKeys("ngan le");
@@ -128,17 +128,33 @@ public class Topic_02_XPath_Css {
         driver.findElement(By.id("txtCEmail")).sendKeys("ngan99@gmail.com");
         driver.findElement(By.id("txtPassword")).sendKeys("123456");
         driver.findElement(By.id("txtCPassword")).sendKeys("123456");
-        driver.findElement(By.id("txtPhone")).sendKeys("356956132");
 
+        //< 10 numbers
+        driver.findElement(By.id("txtPhone")).sendKeys("096956132");
+        //...
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        //Assert
+        Assert.assertEquals(driver.findElement(By.id("txtPhone-error")).getText(), "Số điện thoại phải từ 10-11 số.");
 
+        // > 11 numbers
+        driver.findElement(By.id("txtPhone")).clear();
+        driver.findElement(By.id("txtPhone")).sendKeys("096956132123456");
 
         //...
         driver.findElement(By.xpath("//button[@type='submit']")).click();
 
+        //Assert
+        Assert.assertEquals(driver.findElement(By.id("txtPhone-error")).getText(), "Số điện thoại phải từ 10-11 số.");
+
+        // Đầu số không hợp lệ
+        driver.findElement(By.id("txtPhone")).clear();
+
+        driver.findElement(By.id("txtPhone")).sendKeys("56132123456");
+
+        //...
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
 
         //Assert
         Assert.assertEquals(driver.findElement(By.id("txtPhone-error")).getText(), "Số điện thoại bắt đầu bằng: 09 - 03 - 012 - 016 - 018 - 019 - 088 - 03 - 05 - 07 - 08");
-
-
     }
 }
