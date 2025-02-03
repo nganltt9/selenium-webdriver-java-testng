@@ -1,20 +1,17 @@
 package webdriver;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Topic_17_Action_P1 {
+public class Topic_17_Action_PI {
     WebDriver driver;
     Actions action;
 
@@ -35,5 +32,8 @@ public class Topic_17_Action_P1 {
         Assert.assertEquals(driver.findElement(By.cssSelector("div.ui-tooltip-content")).getText(), "We ask for your age only for statistical purposes.");
 
     }
-
+    @AfterClass
+    public void cleanBrowser() {
+        driver.quit();
+    }
 }

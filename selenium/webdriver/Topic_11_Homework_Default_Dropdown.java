@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -109,9 +110,9 @@ public class Topic_11_Homework_Default_Dropdown {
         }
     }
 
-//    @AfterClass
-//    public void cleanBrowser() {
-//        driver.quit();
-//    }
+    @AfterClass
+    public void cleanBrowser() {
+        driver.quit();
+    }
 
     }
