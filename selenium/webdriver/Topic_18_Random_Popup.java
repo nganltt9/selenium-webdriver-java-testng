@@ -100,7 +100,6 @@ public class Topic_18_Random_Popup {
         }
     }
 
-
     @AfterClass
     public void cleanBrowser() {
         driver.quit();
